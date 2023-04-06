@@ -82,7 +82,7 @@ async function waitJenkinsJob(jobName, timestamp, headers) {
     } else if (data.result == "SUCCESS") {
       core.info(`>>> Job "${data.fullDisplayName}" successfully completed!`);
       break;
-    } else if (data.result == "FAILURE" || data.result == "ABORTED") {
+    } else if (data.result == "FAILURE" || data.result == "ABORTED" || data.result == "UNSTABLE") {
       throw new Error(`Failed job ${data.fullDisplayName}`);
     } else {
       core.info(`>>> Current Duration: ${data.duration}. Expected: ${data.estimatedDuration}`);
